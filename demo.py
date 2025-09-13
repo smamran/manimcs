@@ -1,60 +1,69 @@
 from manim import *
 
-# Helper function to wrap text after a certain number of characters
-def wrap_text(text, line_length=40):
-    words = text.split()
-    lines = []
-    current_line = ""
-    for word in words:
-        if len(current_line + " " + word) <= line_length:
-            if current_line:
-                current_line += " "
-            current_line += word
-        else:
-            lines.append(current_line)
-            current_line = word
-    lines.append(current_line)
-    return "\n".join(lines)
-
 class Demo(Scene):
     def construct(self):
-        # Bangla text with highlighted "বিন্দু"
-        bn_text = "আজ আমরা শিখব জ্যামিতির সবচেয়ে ছোট কিন্তু সবচেয়ে গুরুত্বপূর্ণ উপাদান — <span fgcolor='#FF5733'><b>বিন্দু</b></span>"
-        intro_title_bn = MarkupText(
-            wrap_text(bn_text, line_length=40),
-            font_size=48,
-            font="Nikosh",
-            line_spacing=0.5
-        )
-
-        # English text with highlighted "The Point"
-        en_text = "Today we will learn about the smallest but most important element of geometry — <span fgcolor='#FF5733'><b>The Point</b></span>"
-        intro_title_en = MarkupText(
-            wrap_text(en_text, line_length=50),
-            font_size=42,
-            font="Times New Roman",
-            line_spacing=0.5
-        )
-
-        # Stack texts vertically and center
-        V_SPACING = 0.5
-        intro_group = VGroup(intro_title_bn, intro_title_en).arrange(DOWN, buff=V_SPACING).move_to(ORIGIN)
-
-        # Hand icon
-        hand = SVGMobject("hand.svg").scale(0.3).set_color(YELLOW)
-        hand.next_to(intro_title_bn, LEFT, buff=0.3)
-
-        # Animate Bangla text and hand
-        self.play(Write(intro_title_bn), FadeIn(hand, shift=RIGHT), run_time=2)
+        
+        self.add_sound("back.mp3")
+        
+        # Scene 1: Title
+        title_bn = Text("জ্যামিতির বিভিন্ন আকার", font_size=48, font="Nikosh")
+        title_en = Text("Various Geometric Shapes", font_size=36).next_to(title_bn, DOWN*1.2)
+        
+        # Fade in both titles
+        self.play(FadeIn(title_bn), FadeIn(title_en))
         self.wait(1)
+        
+        # Move Bangla title to top
+        self.play(title_bn.animate.move_to(UP*3), run_time=1.5, rate_func=smooth)
+        self.wait(0.5)
+        
+        # List of shapes and their names
+        shapes = [
+            (Circle(radius=1, color=BLUE), "Circle"),
+            (Square(side_length=2, color=GREEN), "Square"),
+            (Triangle(color=RED), "Triangle"),
+            (Rectangle(width=3, height=1.5, color=YELLOW), "Rectangle"),
+            (Ellipse(width=3, height=1.5, color=PURPLE), "Ellipse"),
+            (RegularPolygon(n=5, color=ORANGE), "Pentagon"),
+            (RegularPolygon(n=6, color=TEAL), "Hexagon"),
+            (RegularPolygon(n=8, color=PINK), "Octagon"),
+            (Star(color=GOLD, fill_opacity=0.5), "Star")
+        ]
 
-        # Move hand to English text
-        self.play(hand.animate.next_to(intro_title_en, LEFT, buff=0.3), run_time=1)
+        previous_shape = None
+        previous_name = None
 
-        # Animate English text
-        self.play(Write(intro_title_en), run_time=2)
-        self.wait(2)
+        for i, (shape, name_text) in enumerate(shapes):
+            shape_name = Text(name_text, font_size=36).next_to(shape, DOWN*1.5)
+            
+            if i == 0:
+                # Morph English subtitle to first shape name
+                self.play(
+                    ReplacementTransform(title_en, shape_name),
+                    Create(shape),
+                    run_time=1.5,
+                    rate_func=smooth
+                )
+            else:
+                self.play(
+                    ReplacementTransform(previous_shape, shape),
+                    ReplacementTransform(previous_name, shape_name),
+                    run_time=1.5,
+                    rate_func=smooth
+                )
+            
+            previous_shape = shape
+            previous_name = shape_name
+            self.wait(0.5)
 
-        # Fade out hand at the end
-        self.play(FadeOut(hand))
-        self.wait()
+        # Last scene: all objects morph to "সমাপ্ত" and fade out
+        end_title = Text("সমাপ্ত", font_size=72)
+        self.play(
+            ReplacementTransform(title_bn, end_title),
+            ReplacementTransform(previous_shape, end_title),
+            ReplacementTransform(previous_name, end_title),
+            run_time=2,
+            rate_func=smooth
+        )
+        self.wait(1)
+        self.play(FadeOut(end_title), run_time=1.5, rate_func=smooth)
