@@ -1,5 +1,3 @@
-Here’s a concise and professional GitHub repository description based on your roadmap:
-
 ---
 
 **CSE Manim Animation Roadmap**
