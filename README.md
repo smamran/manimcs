@@ -1,5 +1,3 @@
----
-
 **CSE Manim Animation Roadmap**
 A structured roadmap for creating animated visualizations of core Computer Science concepts using **Manim**. Organized in progressive phases—from beginner-friendly math and geometry to advanced algorithms, AI/ML, and systems simulations—this repo helps you build strong animation skills while reinforcing key CSE topics.
 
@@ -14,8 +12,6 @@ A structured roadmap for creating animated visualizations of core Computer Scien
 * **Phase 7:** Advanced Simulations (Concurrency, Git Workflows, 3D Graphics)
 
 **Goal:** Learn Manim step-by-step, visualize abstract CSE concepts, and create clear, dynamic, and reusable animations.
-
----
 
 ## **Phase 1: Basics & Foundations**
 
