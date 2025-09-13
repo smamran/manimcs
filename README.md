@@ -1,4 +1,21 @@
-Here’s a **structured Manim animation roadmap** tailored for CSE topics. I’ve organized it in **phases**, from beginner-friendly visualizations to advanced simulations, so you can **progressively build your animation skills while covering core CSE concepts**.
+Here’s a concise and professional GitHub repository description based on your roadmap:
+
+---
+
+**CSE Manim Animation Roadmap**
+A structured roadmap for creating animated visualizations of core Computer Science concepts using **Manim**. Organized in progressive phases—from beginner-friendly math and geometry to advanced algorithms, AI/ML, and systems simulations—this repo helps you build strong animation skills while reinforcing key CSE topics.
+
+**Features:**
+
+* **Phase 1:** Math & Geometry basics (Numbers, Functions, Shapes, Transformations)
+* **Phase 2:** Algorithms & Data Structures (Sorting, Linked Lists, Trees, Graphs)
+* **Phase 3:** Networks & OS (Packet routing, Scheduling, Deadlocks)
+* **Phase 4:** Databases (B-Trees, Hashing, Query Execution)
+* **Phase 5:** AI/ML (Neural Networks, Decision Trees, Clustering, PCA)
+* **Phase 6:** Theory & Cryptography (Automata, Turing Machines, RSA, Hashing)
+* **Phase 7:** Advanced Simulations (Concurrency, Git Workflows, 3D Graphics)
+
+**Goal:** Learn Manim step-by-step, visualize abstract CSE concepts, and create clear, dynamic, and reusable animations.
 
 ---
 
