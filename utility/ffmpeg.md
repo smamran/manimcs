@@ -15,7 +15,8 @@ ffmpeg -i Demo.mp4 -ss 0 -t 40 -c copy output.mp4
 
 ### Intel VAAPI Linux GPU acceleration 4K@60fps encoding on Intel Xe graphics
 ```sh
-ffmpeg -hwaccel vaapi -vaapi_device /dev/dri/renderD128 -i Demo.mp4 -vf 'format=nv12,hwupload' -c:v h264_vaapi -b:v 5M vaapi.mp4
+export LIBVA_DRIVER_NAME=iHD
+ffmpeg -hwaccel vaapi -vaapi_device /dev/dri/renderD128 -i Demo.mp4 -vf 'format=nv12,hwupload' -c:v h264_vaapi -qp 23 -c:a aac -b:a 128k vaapi.mp4
 ```
 
 ### Intel iGPU (Quick Sync) Encoding
