@@ -28,3 +28,8 @@ ffmpeg -i Demo.mp4 -c:v h264_qsv -preset fast -global_quality 23 -look_ahead 0 -
 ```sh
 ffmpeg -i Demo.mp4 -c:v libx264 -preset fast -crf 18 -pix_fmt yuv420p -r 30 -g 30 -keyint_min 30 -c:a aac -b:a 128k -movflags +faststart cpu.mp4
 ```
+
+### Reduce Resolution from 1080p (or Any) to 720p using intel QSV in windows
+```sh
+ffmpeg -i Demo.mp4 -c:v h264_qsv -b:v 2M -maxrate 2.5M -bufsize 4M -vf "scale=-1:720" -r 30 -g 30 -pix_fmt nv12 -c:a aac -b:a 128k -movflags +faststart Demo_720p_compressed.mp4
+```
